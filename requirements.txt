@@ -1,0 +1,13 @@
+cymem==2.0.7
+distlib==0.3.6
+filelock==3.8.0
+numpy==1.23.5
+platformdirs==2.5.2
+pyparsing==3.0.9
+smart-open==5.2.1
+spacy-legacy==3.0.10
+spacy-loggers==1.0.3
+typing_extensions==4.4.0
+urllib3==1.26.13
+virtualenv==20.16.6
+wasabi==0.10.1
