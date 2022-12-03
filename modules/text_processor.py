@@ -1,8 +1,10 @@
 import re
+import spacy
+nlp = spacy.load('en_core_web_sm')
 
 class TextPreprocessor:
     def convert_to_sentences(self, text):
-        return re.split(r' *[\.\?!][\'"\)\]]* *', text)
+        return [str(sentence) for sentence in nlp(text).sents]
     
     def collect_fixed_patterns(self, text):
         list_of_keywords = ['plan', 'task', 'aim', 'target', 'take over', 'assign']

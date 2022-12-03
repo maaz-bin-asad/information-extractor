@@ -137,7 +137,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
-/assignment
+/text-extract-env
 # mypy
 .mypy_cache/
 .dmypy.json
