@@ -8,12 +8,10 @@ import re
 speech_recognizer = SpeechRecognizer(constants.AUDIO_FILE)
 information_extractor = InformationExtractor()
 text_processor = TextPreprocessor()
-# transcript = speech_recognizer.recognize_speech()
-# print(transcript)
-transcript = "Can we aim to complete it by today. Yes sure? Lets plan to complete it"
-
+transcript = speech_recognizer.recognize_speech()
+print(transcript)
+# transcript = "Can we aim to complete it by today. yes sure? lets plan to complete it"
+transcript = transcript.lower()
 list_of_sentences = text_processor.convert_to_sentences(transcript)
 fixed_matched_phrases = list(map(text_processor.collect_fixed_patterns, list_of_sentences))
-print(fixed_matched_phrases)
-action_items = information_extractor.get_action_items(transcript, fixed_matched_phrases)
-print(action_items)
+action_items = list(map(information_extractor.get_action_items, fixed_matched_phrases))
