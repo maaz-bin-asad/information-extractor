@@ -2,23 +2,19 @@ import spacy
 import pandas as pd
 from spacy import displacy
 from spacy.matcher import Matcher 
-import re 
-
 nlp = spacy.load("en_core_web_sm")
 
 class InformationExtractor():
 
-    def all_schemes(text,check):
+    def get_action_items(self, text, check):
         
-        schemes = []
+        action_items = []
         
         doc = nlp(text)
         
         # initiatives
-        prog_list = ['programme','scheme',
-                    'initiative','campaign',
-                    'agreement','conference',
-                    'alliance','plan']
+        items_list = ['task','complete',
+                    'assign','plan']
         
         # pattern to match initiatives names 
         pattern = [{'POS':'DET'},
@@ -27,12 +23,12 @@ class InformationExtractor():
                 {'POS':'PROPN','OP':'?'},
                 {'POS':'PROPN','OP':'?'},
                 {'POS':'PROPN','OP':'?'},
-                {'LOWER':{'IN':prog_list},'OP':'+'}
+                {'LOWER':{'IN':items_list},'OP':'+'}
                 ]
         
         if check == 0:
             # return blank list
-            return schemes
+            return action_items
 
         # Matcher class object 
         matcher = Matcher(nlp.vocab) 
@@ -50,28 +46,9 @@ class InformationExtractor():
             # matched string
             span = str(doc[start:end])
             
-            if (len(schemes)!=0) and (schemes[-1] in span):
-                schemes[-1] = span
+            if (len(action_items)!=0) and (action_items[-1] in span):
+                action_items[-1] = span
             else:
-                schemes.append(span)
+                action_items.append(span)
             
-        return schemes
-
-    def prog_sent(text):
-        
-        patterns = [r'\b(?i)'+'plan'+r'\b',
-                r'\b(?i)'+'programme'+r'\b',
-                r'\b(?i)'+'scheme'+r'\b',
-                r'\b(?i)'+'campaign'+r'\b',
-                r'\b(?i)'+'initiative'+r'\b',
-                r'\b(?i)'+'conference'+r'\b',
-                r'\b(?i)'+'agreement'+r'\b',
-                r'\b(?i)'+'alliance'+r'\b']
-
-        output = []
-        flag = 0
-        for pat in patterns:
-            if re.search(pat, text) != None:
-                flag = 1
-                break
-        return flag
+        return action_items

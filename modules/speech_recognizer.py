@@ -8,6 +8,6 @@ class SpeechRecognizer:
         r = sr.Recognizer()
         with sr.AudioFile(self.audioFile) as source:
             audio_text = r.listen(source)
-            text = r.recognize_google(audio_text)
             print('Converting to text...')
+            text = r.recognize_google(audio_text)
             return text
