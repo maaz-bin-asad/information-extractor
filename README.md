@@ -4,6 +4,7 @@ Steps to run:
 
 - Clone the repository
 - Create a virtual environment (optional)
+- Put the audio file (.wav extension) in the root folder of the project. A sample file is already present
 - Run the following command to install dependencies
 ```
 $ pip install -r requirements.txt
