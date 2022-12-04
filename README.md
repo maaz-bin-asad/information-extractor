@@ -14,5 +14,5 @@ $ pip install -r requirements.txt
 $ python main.py
 ```
 
-The documentation for the project is [here](https://docs.google.com/document/d/1FsZO7eXeizrKbgU_17slB0zTihHpDAH5Lty6T9pU-Hc/edit?usp=sharing)
-The Video Demo is [here](https://www.loom.com/share/3c7242fe400a413f882a246a06c9b187)
+- The documentation for the project is [here](https://docs.google.com/document/d/1FsZO7eXeizrKbgU_17slB0zTihHpDAH5Lty6T9pU-Hc/edit?usp=sharing)
+- The Video Demo is [here](https://www.loom.com/share/3c7242fe400a413f882a246a06c9b187)
