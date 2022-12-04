@@ -10,10 +10,10 @@ speech_recognizer = SpeechRecognizer(constants.AUDIO_FILE)
 information_extractor = InformationExtractor()
 
 text_processor = TextPreprocessor()
-# transcript = speech_recognizer.recognize_speech()
-# print(transcript)
+transcript = speech_recognizer.recognize_speech()
+print(transcript)
 
-transcript = "Can we aim to complete the notification task by today? Yes! Let's plan to complete it. Plan to complete the Redis task"
+# transcript = "Can we aim to complete the notification task by today? Yes! Let's plan to complete it. Plan to complete the button task"
 
 transcript = transcript.lower()
 
