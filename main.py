@@ -20,6 +20,7 @@ text_processor = TextPreprocessor()
 
 transcript_generator = TranscriptGenerator(transcript)
 
+# generate the text using generative networks
 list_of_sentences = transcript_generator.generate_text()
 print('Generated text is', list_of_sentences)
 
@@ -29,10 +30,12 @@ print('Generated text is', list_of_sentences)
 
 # print('Reduced search space is', reduced_sentences)
 
+# extract action items from each transcript
 action_items = list(map(information_extractor.get_action_items, list_of_sentences))
 
 print('Action items are', action_items)
 
+# create a dataframe
 data = {'Transcript': list_of_sentences,
         'Action Items': action_items}
 

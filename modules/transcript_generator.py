@@ -64,10 +64,13 @@ class TranscriptGenerator:
 
         transcripts_list = []
 
+        # create for 100 rows
         for i in range(100):
             start = np.random.randint(0, len(X)-1)
             pattern = X[start]
             full_string = [int_to_char[value] for value in pattern]
+
+            # create a transcript of 100 characters long (change according to the requirement)
             for i in range(100):
                 x = np.reshape(pattern,(1,len(pattern), 1))
                 x = x / float(len(characters))
