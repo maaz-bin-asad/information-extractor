@@ -1,34 +1,41 @@
 from modules.speech_recognizer import SpeechRecognizer
 from modules.information_extractor import InformationExtractor
 from modules.text_processor import TextPreprocessor
+from modules.transcript_generator import TranscriptGenerator
 import constants
-from nltk import tokenize
 import re
+import pandas as pd
 
+"""
 speech_recognizer = SpeechRecognizer(constants.AUDIO_FILE)
+transcript = speech_recognizer.recognize_speech()
+print(transcript)
+"""
+
+transcript = (open(constants.DATASET_FILE).read())
 
 information_extractor = InformationExtractor()
 
 text_processor = TextPreprocessor()
-transcript = speech_recognizer.recognize_speech()
-print(transcript)
 
-# transcript = "Can we aim to complete the notification task by today? Yes! Let's plan to complete it. Plan to complete the button task"
+transcript_generator = TranscriptGenerator(transcript)
 
-transcript = transcript.lower()
+list_of_sentences = transcript_generator.generate_text()
+print('Generated text is', list_of_sentences)
 
-list_of_sentences = text_processor.convert_to_sentences(transcript)
+# list_of_sentences = text_processor.convert_to_sentences(transcript)
 
-reduced_sentences = list(map(text_processor.reduce_search_space, list_of_sentences))
+# reduced_sentences = list(map(text_processor.reduce_search_space, list_of_sentences))
 
-print('Reduced search space is', reduced_sentences)
+# print('Reduced search space is', reduced_sentences)
 
-action_items = list(map(information_extractor.get_action_items, reduced_sentences))
+action_items = list(map(information_extractor.get_action_items, list_of_sentences))
 
-print('Action items are')
+print('Action items are', action_items)
 
-num = 1
-for i in range(len(action_items)):
-    if(action_items[i]!= None):
-        print('{}. {}'.format(num, action_items[i]))
-        num += 1
+data = {'Transcript': list_of_sentences,
+        'Action Items': action_items}
+
+df = pd.DataFrame(data)
+
+df.to_csv('transcript_data.csv')
